@@ -1,7 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class UziShoot : MonoBehaviour
 {
+    //UI Variables
+    public Text enemyText;
+    public Text timeText;
+    public GameObject winExit;
+
     // Bullet Variables
     public GameObject Bullet_Emitter;
     public GameObject Bullet;
@@ -21,21 +29,52 @@ public class UziShoot : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
 
+    //private variables
     private int frameCount = 0;
     private bool fire = false;
     private AudioSource source;
     private float volLowRange = .5f;
     private float volHightRange = 1.0f;
+    private int aliveEnemies;
+    private float gameTime;
 
     // Get Sound Source
     void Awake()
     {
         source = GetComponent<AudioSource>();
+
+    }
+
+    void Start()
+    {
+        aliveEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemyText.text = "Enemies Alive: " + aliveEnemies;
+        gameTime++;
+        timeText.text = "Timer: " + Mathf.Round((gameTime/60));
     }
 
     // Update is called once per frame
     void Update()
     {
+        //control/display game time
+        gameTime++;
+        timeText.text = "Timer: " + Mathf.Round((gameTime/60));
+        
+        //control/display game time
+        aliveEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemyText.text = "Enemies Alive: " + aliveEnemies;
+
+        if (aliveEnemies <= 0 && (GameObject.FindGameObjectsWithTag("WinCube").Length == 0))
+        {
+            Vector3 playerPos = this.transform.position;
+            Vector3 playerDirection = this.transform.right;
+            Quaternion playerRotation = this.transform.rotation;
+            float spawnDistance = 10;
+            Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
+
+            Instantiate(winExit, spawnPos, playerRotation );
+        }
+
         if (frameCount < fireRate)
         {
             ++frameCount;
@@ -48,7 +87,7 @@ public class UziShoot : MonoBehaviour
 
         if (fire == true)
         {
-            muzzleFlash.GetComponent<ParticleSystem>().Emit(1);
+            muzzleFlash.GetComponent<ParticleSystem>().Emit(100);
 
 
             RaycastHit hit;

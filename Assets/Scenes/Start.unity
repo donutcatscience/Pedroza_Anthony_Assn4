@@ -312,8 +312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.7, y: -50.6}
-  m_SizeDelta: {x: 923.6, y: 83.8}
+  m_AnchoredPosition: {x: 11.27, y: -27}
+  m_SizeDelta: {x: 928.8, y: 118.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663892295
 MonoBehaviour:
@@ -347,7 +347,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill all of the enemies and find the exit to win.
+  m_Text: "Kill all of the enemies \nand shoot the exit to win."
 --- !u!222 &663892296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -386,8 +386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000022888, y: 194.8}
-  m_SizeDelta: {x: 700.6, y: 174.7}
+  m_AnchoredPosition: {x: -8.5, y: 200.3}
+  m_SizeDelta: {x: 789.1, y: 220.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280751611
 MonoBehaviour:
@@ -421,7 +421,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome to Super Shooter Extreme!
+  m_Text: Welcome to Kingdom Battle Extreme!
 --- !u!222 &1280751612
 CanvasRenderer:
   m_ObjectHideFlags: 0
