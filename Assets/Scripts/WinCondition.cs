@@ -20,7 +20,8 @@ public class WinCondition : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Application.LoadLevel("Win");
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.UnloadSceneAsync(scene);
         SceneManager.LoadScene("Win");
     }
 }
