@@ -13,7 +13,6 @@ public class WinCondition : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         Instantiate(firewordsEffect, this.transform.position, this.transform.rotation);
-
         source = GetComponent<AudioSource>();
         source.PlayOneShot(winSound, 1);
     }
