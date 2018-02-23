@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UziShoot : MonoBehaviour
 {
@@ -14,8 +12,14 @@ public class UziShoot : MonoBehaviour
     public GameObject Casing;
     public float Casing_Upward_Force;
 
+    // Uzi Variables
+    public float damage = 10f;
+    public float range = 1000f;
     public int fireRate = 15;
     public AudioClip shootSound;
+    public Camera fpsCam;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
 
     private int frameCount = 0;
     private bool fire = false;
@@ -37,13 +41,31 @@ public class UziShoot : MonoBehaviour
             ++frameCount;
         }
 
-        if (Input.GetMouseButton(0) && frameCount >= fireRate)
+        if (Input.GetButton("Fire1") && frameCount >= fireRate)
         {
             fire = true;
         }
 
         if (fire == true)
         {
+            muzzleFlash.GetComponent<ParticleSystem>().Emit(1);
+
+
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            {
+                Debug.Log(hit.transform.name);
+
+                Enemy target = hit.transform.GetComponent<Enemy>();
+                if (target != null)
+                {
+                    target.TakeDamage(damage);
+                }
+
+                GameObject impactGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGo, 0.25f);
+            }
+
             //The Bullet instantiation happens here.
             GameObject Temporary_Bullet_Handler;
             Temporary_Bullet_Handler = Instantiate(Bullet, Bullet_Emitter.transform.position, Bullet_Emitter.transform.rotation) as GameObject;
@@ -74,8 +96,6 @@ public class UziShoot : MonoBehaviour
             //set the Bullets and Casings to self destruct after 3 seconds
             Destroy(Temporary_Bullet_Handler, 3.0f);
             Destroy(Temporary_Casing_Handler, 3.0f);
-
-
 
             // Bullet Fire Controls
             fire = false;

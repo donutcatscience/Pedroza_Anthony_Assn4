@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BulletHit : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class BulletHit : MonoBehaviour
 
     void Awake()
     {
-
         source = GetComponent<AudioSource>();
     }
 
