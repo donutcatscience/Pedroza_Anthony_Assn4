@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
     //load game scene
     public void LoadLevel (string name)
     {
-        Debug.Log("Level load requested for " +name);
-        Application.LoadLevel(name);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.UnloadSceneAsync(scene);
+        SceneManager.LoadScene(name);
     }
 
     //handle quitting game
     public void QuitRequest()
     {
-        Debug.Log("I want to quit!");
         Application.Quit();
     }
 }

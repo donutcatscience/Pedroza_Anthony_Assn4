@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class WinCondition : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Application.LoadLevel("Win");
+        //Application.LoadLevel("Win");
+        SceneManager.LoadScene("Win");
     }
 }
